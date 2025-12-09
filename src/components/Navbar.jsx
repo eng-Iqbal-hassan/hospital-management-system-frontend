@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <div className='flex items-center justify-between py-4 mb-5 border-b border-b-gray-500'>
-      <img className='w-44 cursor-pointer' src={assets.logo} alt="logo" />
+      <img data-path="/" onClick={handleNavigation} className='w-44 cursor-pointer' src={assets.logo} alt="logo" />
       <ul className='hidden md:flex items-start gap-5 font-mediun'>
         <NavLink className="no-underline active>hr:block" to="/">
           <li className="py-1 list-none">HOME</li>
