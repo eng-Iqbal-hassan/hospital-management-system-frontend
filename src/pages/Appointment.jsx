@@ -54,11 +54,26 @@ const Appointment = () => {
       while(currentDate < endTime) {
         let formattedTime = currentDate.toLocaleTimeString([],{hour: "2-digit", minute: "2-digit"})
 
-        // Add slots to the array
-        timeSlots.push({
-          dateTime: new Date(currentDate),
-          time: formattedTime,
-        })
+        let day = currentDate.getDate();
+        let month = currentDate.getMonth() + 1;
+        let year = currentDate.getFullYear();
+
+        // Here when ever we change the current date, then the value in these variables will be accoriding to the selected date
+        // And from here we will look that the user selected date is not in the already booked slot, If it is so we will not push the timeslot in it. 
+        
+        const slotDate = `${day}_${month}_${year}`;
+        const slotTime = formattedTime;
+
+        const isSlotAvailable = docInfo.slots_booked[slotDate] && docInfo.slots_booked[slotDate].includes(slotTime) ? false : true;
+
+        if (isSlotAvailable) {
+          // Here we add only the times to show in the UI whose slots are not booked for doctor appointment
+          // Add slots to the array
+          timeSlots.push({
+           dateTime: new Date(currentDate),
+           time: formattedTime,
+          })
+        }
 
         // Increment current time by 30 min 
         currentDate.setMinutes(currentDate.getMinutes() + 30);
