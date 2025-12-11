@@ -13,7 +13,7 @@ const Appointment = () => {
   const daysOfWeek = [ 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT' ];
   const navigate = useNavigate();
 
-  console.log("document id is",docId);
+  console.log("doctor id is",docId);
 
   const [docInfo, setDocInfo] = useState(null);
 
@@ -96,7 +96,7 @@ const Appointment = () => {
       let day = date.getDate();
       let month = date.getMonth() + 1; // It is zeor index so to get the actual month we add 1.
       let year = date.getFullYear();
-      const slotDate = day + "_" + month + "_" + year + "_";
+      const slotDate = day + "_" + month + "_" + year;
       console.log(slotDate);
 
       const {data} = await axios.post(backendUrl + "/api/user/book-appointment", {slotTime, slotDate, docId}, {
